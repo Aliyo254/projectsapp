@@ -23,6 +23,7 @@ def new_project(request):
         form = NewProjectForm()
     return render(request, 'newproject.html', {"form": form})
 
+
 @login_required(login_url="/accounts/login/")
 def profile(request):
     profiles=Profile.objects.filter(user=request.user.id)
