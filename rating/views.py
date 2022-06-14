@@ -1,7 +1,7 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from .models import Project,Profile
-from .forms import NewProjectForm,NewProfileForm
+from .forms import NewProjectForm,NewProfileForm,RateForm
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
@@ -43,3 +43,18 @@ def new_profile(request):
     else:
         profile_form = NewProfileForm()
     return render(request, 'newprofile.html', {"profile_form": profile_form,})
+
+def rating(request,rate_id):
+
+    current_user = request.user
+    project = get_object_or_404(Project,pk=rate_id)
+    if request.method == 'POST':
+        rate_form = RateForm(request.POST, request.FILES)
+        if rate_form.is_valid():
+            rate = rate_form.save(commit=False)
+            rate.project = project
+            rate.rater = current_user
+            rate.save()
+        return redirect('Home')
+
+    return render(request, 'index.html')
