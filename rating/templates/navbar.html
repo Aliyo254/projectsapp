@@ -17,10 +17,10 @@
       <a class="navbar-brand" href="{%url 'profile'%}">{{request.user}}</a>
       <a class="navbar-brand" href="{%url 'new_project'%}">new project</a>
       <a class="navbar-brand" href="/logout">logout</a>
-      {% else %}
+      {%else%}
       <a class='navbar-brand' href="/accounts/login">Login</a>
       {% endif%}
-      <form  class="navbar-form" role="search"action="#">
+      <form  class="navbar-form" role="search"action="{%url 'search_projects'%}">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search by title" name="title">
             <div class="input-group-btn">
@@ -37,14 +37,14 @@
 <style>
 .navbar-inverse{
   height: 100px;
-  background-color: #13054f;
-  
+  background-color: #4F0505;
+  /* padding-top: 50px; */
   padding-bottom: 50px;
   margin-bottom: 0px;
   background-size: cover;
 }
 body{
-  background-image: url('https://unsplash.com/backgrounds/cool/plain');
+  background-image: url('http://informationcommunicationtechnology.com/wp-content/uploads/2018/06/Dark-rustic-wood-panel-background-646433.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
