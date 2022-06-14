@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .models import Project
-from .forms import NewProjectForm
+from .models import Project,Profile
+from .forms import NewProjectForm,NewProfileForm
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
@@ -22,3 +22,23 @@ def new_project(request):
     else:
         form = NewProjectForm()
     return render(request, 'newproject.html', {"form": form})
+
+@login_required(login_url="/accounts/login/")
+def profile(request):
+    profiles=Profile.objects.filter(user=request.user.id)
+    projects=Project.objects.filter(owner=request.user.id)
+    return render (request,'profile.html',{'projects':projects,'profiles':profiles,})
+@login_required(login_url="/accounts/login/")
+def new_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        profile_form = NewProfileForm(request.POST, request.FILES)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return redirect('profile')
+
+    else:
+        profile_form = NewProfileForm()
+    return render(request, 'newprofile.html', {"profile_form": profile_form,})
