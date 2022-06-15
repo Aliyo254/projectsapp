@@ -1,17 +1,17 @@
 {%extends 'layout.html'%}
 {%block content%}
-{% load bootstrap3 %} {% load staticfiles %
+{% load bootstrap3 %} {% load staticfiles %}
 {%for project in projects%}
 <div style="color:black;background-color:white;border-style:solid;border-color:#4F0505;margin:20px;"class="col-md-5">
-    <h1><a  href="{{project.link}}">{{project.title}}</a></h1>
-    <img src="{{project.project_image.url}}" style="height:200px">
-    <h4>by {{project.owner.username}}</h4>
-    <p>{{project.description}}</p>
-    <p>average rating: {{project.average_rating}}</p>
+<h1><a  href="{{project.link}}">{{project.title}}</a></h1>
+<img src="{{project.project_image.url}}" style="height:200px">
+<h4>by {{project.owner.username}}</h4>
+<p>{{project.description}}</p>
+<p>average rating: {{project.average_rating}}</p>
 
-    <a class="img-thumbnail" href="{{project.project_image}}" data-image-id="{{project.id}}" data-toggle="modal" data-target="#{{project.id}}">
-            rate
-    </a>
+<a class="img-thumbnail" href="{{project.project_image}}" data-image-id="{{project.id}}" data-toggle="modal" data-target="#{{project.id}}">
+        rate
+             </a>
 </div>
 
 

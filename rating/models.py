@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import numpy as np
 
 # Create your models here.
 
@@ -9,6 +10,17 @@ class Project(models.Model):
     link=models.URLField(max_length=100)
     project_image=models.ImageField(upload_to='photos/')
     owner=models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+
+    @classmethod
+    def search_by_title(cls,search_term):
+        projects=cls.objects.filter(title__icontains=search_term)
+        return projects
+
+    def average_rating(self):
+        all_ratings = list(map(lambda x: x.design_rating, self.rate_set.all()))
+        all_ratings = list(map(lambda x: x.content_rating, self.rate_set.all()))
+        all_ratings = list(map(lambda x: x.usability_rating, self.rate_set.all()))
+        return np.mean(all_ratings)
 
 class Profile(models.Model):
     profile_pic=models.ImageField(upload_to='profile_photos/')

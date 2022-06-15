@@ -6,7 +6,8 @@ from .forms import NewProjectForm,NewProfileForm,RateForm
 @login_required(login_url='/accounts/login/')
 def home(request):
     projects=Project.objects.all()
-    return render(request,'index.html',{'projects':projects})
+    rate_form = RateForm()
+    return render(request,'index.html',{'projects':projects,'rate_form':rate_form})
 
 @login_required(login_url='/accounts/login/')
 def new_project(request):
@@ -58,3 +59,17 @@ def rating(request,rate_id):
         return redirect('Home')
 
     return render(request, 'index.html')
+
+def search_projects(request):
+    rate_form = RateForm()
+    if 'title' in request.GET and request.GET['title']:
+        search_term=request.GET.get('title')
+        searched_projects=Project.search_by_title(search_term)
+        message=f'{search_term}'
+
+        return render(request,'search.html',{"message":message,"projects":searched_projects,'rate_form':rate_form,})
+
+    else:
+        message='You Havent searched for any term'
+
+        return render(request, 'search.html',{"message":message,'rate_form':rate_form,})
