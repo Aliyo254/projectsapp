@@ -46,7 +46,7 @@ cd project-awwards pip install -r requirements.txt
  ##### Setup Database  
   SetUp your database User,Password, Host then make migrate  
  ```bash 
-python manage.py makemigrations instagram
+python manage.py makemigrations rating
  ``` 
  Now Migrate  
  ```bash 
