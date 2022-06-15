@@ -22,7 +22,7 @@ SECRET_KEY = '8#ml&(69=oc(&et6g7#3p1cssse0pi$mr#*#*7$qyvgvvisd@b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['projectsapp1234.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -137,3 +137,4 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
