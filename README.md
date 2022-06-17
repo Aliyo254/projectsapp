@@ -9,7 +9,7 @@ https://projectsapp1234.herokuapp.com/
   
 ## Screenshots 
 ###### Home page
- https://github.com/Aliyo254/projectsapp/blob/main/static/images/Screenshot%20from%202022-06-15%2008-53-19.png
+ ![alt text](https://github.com/Aliyo254/projectsapp/blob/main/static/images/Screenshot%20from%202022-06-15%2008-53-19.png)
 
  
  
